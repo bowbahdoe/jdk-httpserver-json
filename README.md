@@ -32,7 +32,6 @@ dependencies {
 
 ```java
 import com.sun.net.httpserver.HttpServer;
-import dev.mccue.jdk.httpserver.Body;
 import dev.mccue.jdk.httpserver.HttpExchangeUtils;
 import dev.mccue.jdk.httpserver.json.JsonBody;
 import dev.mccue.json.Json;
