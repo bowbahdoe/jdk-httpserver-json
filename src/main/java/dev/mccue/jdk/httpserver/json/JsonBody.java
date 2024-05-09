@@ -11,6 +11,9 @@ import java.nio.charset.StandardCharsets;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * An implementation of {@link Body} which will respond with {@link Json}.
+ */
 public final class JsonBody implements Body {
     private final Json json;
     private final byte[] jsonBytes;
@@ -20,6 +23,12 @@ public final class JsonBody implements Body {
         this.jsonBytes = Json.writeString(json).getBytes(StandardCharsets.UTF_8);
     }
 
+    /**
+     * Creates a {@link JsonBody}.
+     *
+     * @param jsonEncodable The JSON to use.
+     * @return A {@link JsonBody}
+     */
     public static JsonBody of(JsonEncodable jsonEncodable) {
         Objects.requireNonNull(jsonEncodable);
         return new JsonBody(jsonEncodable.toJson());
