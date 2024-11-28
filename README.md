@@ -15,7 +15,7 @@ Requires Java 21+
 <dependency>
     <groupId>dev.mccue</groupId>
     <artifactId>jdk-httpserver-json</artifactId>
-    <version>2024.05.08</version>
+    <version>2024.11.27</version>
 </dependency>
 ```
 
@@ -23,7 +23,7 @@ Requires Java 21+
 
 ```
 dependencies {
-    implementation("dev.mccue:jdk-httpserver-json:2024.05.08")
+    implementation("dev.mccue:jdk-httpserver-json:2024.11.27")
 }
 ```
 

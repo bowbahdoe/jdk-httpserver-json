@@ -1,8 +1,10 @@
 package dev.mccue.jdk.httpserver.json;
 
+import com.sun.net.httpserver.HttpExchange;
 import dev.mccue.jdk.httpserver.Body;
 import dev.mccue.jdk.httpserver.ResponseLength;
 import dev.mccue.json.Json;
+import dev.mccue.json.JsonDecoder;
 import dev.mccue.json.JsonEncodable;
 
 import java.io.IOException;
@@ -20,7 +22,7 @@ public final class JsonBody implements Body {
 
     private JsonBody(Json json) {
         this.json = json;
-        this.jsonBytes = Json.writeString(json).getBytes(StandardCharsets.UTF_8);
+        this.jsonBytes = Json.write(json).getBytes(StandardCharsets.UTF_8);
     }
 
     /**
@@ -32,6 +34,17 @@ public final class JsonBody implements Body {
     public static JsonBody of(JsonEncodable jsonEncodable) {
         Objects.requireNonNull(jsonEncodable);
         return new JsonBody(jsonEncodable.toJson());
+    }
+
+    public static Json read(HttpExchange exchange) throws IOException {
+        return Json.read(new String(
+                exchange.getRequestBody().readAllBytes(),
+                StandardCharsets.UTF_8
+        ));
+    }
+
+    public static <T> T read(HttpExchange exchange, JsonDecoder<T> decoder) throws IOException {
+        return decoder.decode(read(exchange));
     }
 
     @Override
