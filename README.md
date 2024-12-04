@@ -42,7 +42,7 @@ import java.net.InetSocketAddress;
 void main() throws IOException {
     var server = HttpServer.create(new InetSocketAddress(8000), 0);
     server.createContext("/", exchange -> {
-        HttpExchangeUtils.sendResponse(exchange, 200, JsonBody.of(
+        HttpExchanges.sendResponse(exchange, 200, JsonBody.of(
                 Json.objectBuilder()
                         .put("Hello", "world")
         ));
